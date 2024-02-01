@@ -14,7 +14,7 @@ public class DatabaseInitializer {
 
     @PostConstruct
     public void initialize() {
-        String sql = "CREATE TABLE IF NOT EXISTS `testingtable` (" +
+        String sql = "CREATE TABLE IF NOT EXISTS `user` (" +
                      "`id` int(11) NOT NULL AUTO_INCREMENT," +
                      "`fullname` varchar(50) DEFAULT NULL," +
                      "`address` varchar(100) DEFAULT NULL," +
