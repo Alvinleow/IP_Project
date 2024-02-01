@@ -9,62 +9,56 @@ body {
     height: 100vh; /* Set body to full viewport height */
   }
   .main-content {
-    flex-grow: 1;
-    background-color: #f9f9f9;
-    padding: 20px;
-    padding-bottom: 50px; /* Add padding at the bottom equals to the footer height */
-    overflow-y: auto; /* In case the content is too long, allow it to scroll */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .report-container {
-    background-color: #ffffff;
+  .view-container {
+    background: white;
+    padding: 2em;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
-    margin-left: 300px; /* Adjust based on your sidebar width */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 654px;
   }
   .report-title {
     color: #333;
     margin-bottom: 2em;
   }
-
-  .report-container img{
-    margin-top: 40px;
-  }
-
   .title-background {
     background-color: #FFCC16;
     padding: 0.5em 1em; /* Add some padding around the text */
   }
-  .formula {
-    background-color: #FFFAC9;
-    border-radius: 15px;
+  .participant-list {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+  }
+  .participant-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .participant-list th,
+  .participant-list td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #e1e1e1;
+  }
+  .participant-list th {
+    background-color: #f2f2f2;
+  }
+  .search-box {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .search-box input[type="text"] {
     padding: 10px;
-    margin-bottom: 1em;
-    font-weight: bold;
-  }
-  .buttons-container {
-    text-align: center;
-  }
-  button {
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    cursor: pointer;
   }
-  .calculate-btn {
-    background-color: #ff814b;
-    color: white;
-    border-radius: 70px;
-  }
-  .view-report-btn {
-    background-color: #ff814b;
-    color: white;
-    border-radius: 70px;
-  }
-  .calculate-btn:hover,
-  .view-report-btn:hover {
-    opacity: 0.8;
+  .search-box input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
   }
   .footer-bar {
     background-color: rgb(38,123,251);
@@ -80,10 +74,8 @@ body {
     display: flex;
     justify-content: space-between; /* This will place the logo and icon on opposite ends */
     align-items: center; /* This will vertically align them in the center */
-    padding: 0 20px;
-    padding-bottom: 20px;
+    padding: 10px;
   }
-  
   .logo-container {
     flex-grow: 1;
     display: flex;
