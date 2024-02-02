@@ -86,6 +86,8 @@ public class UserManageController {
 	public String showAdminHomePage() {
 		return "Admin/adminHomePage";
 	}
+	
+	
     
     @RequestMapping("/register")
     public ModelAndView showRegistrationForm() {
@@ -177,4 +179,14 @@ public class UserManageController {
     public String showRegistrationSuccess() {
         return "General/registerSuccessful";
     }
+    
+    @GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+	    HttpSession session = request.getSession(false); // false means: don't create if it doesn't exist
+	    if (session != null) {
+	        session.invalidate(); // this will clear the session
+	    }
+	    return "General/logoutPage"; // display the logout confirmation page
+	}
+
 }

@@ -26,11 +26,6 @@ body {
     color: #333;
     margin-bottom: 2em;
   }
-
-  .report-container img{
-    margin-top: 40px;
-  }
-
   .title-background {
     background-color: #FFCC16;
     padding: 0.5em 1em; /* Add some padding around the text */
@@ -138,4 +133,78 @@ body {
 
   .dropdown-item:hover {
     background-color: #f1f1f1;
+  }
+
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .profile-title {
+    display: flex;
+    flex-direction: row ;
+    background-color: transparent;
+    position: absolute;
+    height: 100px;
+    font-size:xx-large;
+  }
+
+  .user-title {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-icon {
+    width: fit-content;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+
+  .user-name,
+  .user-text {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-weight: bold;
+  }
+
+  .user-text {
+    font-size: large;
+    margin-top: 25px;
+  }
+
+  .profile-background {
+    background-color: #C2DBFF;
+    height: 70px;
+    margin-bottom: 50px;
+  }
+
+  .profile-info {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .information {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 135px;
+    margin-bottom: 10px;
+  }
+
+  .icons {
+    width: fit-content;
+  }
+
+  .icons img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .text {
+    margin-left: 10px;
+    font-size: large;
+    height: fit-content;
   }
