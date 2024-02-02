@@ -59,7 +59,7 @@ public class DatabaseInitializer {
         	    "`bill_month` VARCHAR(255) NOT NULL," +
         	    "`file_content` LONGBLOB, " +
         	    " FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" +
-        	") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+        	    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
     }
     
@@ -72,7 +72,7 @@ public class DatabaseInitializer {
         		"`bill_month` VARCHAR(255) NOT NULL," + 
         		"`file_content` LONGBLOB,\r\n" + 
         		"FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" + 
-        		") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_general_ci;";
+        		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
     }
     
