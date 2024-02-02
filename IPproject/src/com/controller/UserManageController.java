@@ -56,7 +56,7 @@ public class UserManageController {
 
 	            if ((int) user.get("userLevel") == 0) {
 	            	
-	                return "redirect:/userHomePage";
+	                return "redirect:/HomePageUser";
 	            } else if ((int) user.get("userLevel") == 1) {
 	            	
 	                return "redirect:/adminHomePage";
