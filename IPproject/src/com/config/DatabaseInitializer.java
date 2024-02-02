@@ -15,7 +15,10 @@ public class DatabaseInitializer {
     @PostConstruct
     public void initialize() {
         createUserTable();
-//        createOtherTable();
+        createWaterTable();
+        createElectricityTable();
+        createWasteTable();
+        createOilTable();
     }
     
     private void createUserTable() {
@@ -36,8 +39,53 @@ public class DatabaseInitializer {
         jdbcTemplate.execute(sql);
     }
     
-//    private void createOtherTable() {
-//        String sql = "CREATE TABLE IF NOT EXISTS `other_table` (...);";
-//        jdbcTemplate.execute(sql);
-//    }
+    private void createWaterTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS water_bills(" + 
+        		"`id` INT AUTO_INCREMENT PRIMARY KEY," + 
+        		"`user_id` INT NOT NULL," + 
+        		"`consumption` DECIMAL(10, 2) NOT NULL," + 
+        		"`bill_month` VARCHAR(255) NOT NULL," + 
+        		"`file_content` LONGBLOB," + 
+        		" FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" + 
+        		") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        jdbcTemplate.execute(sql);
+    }
+    
+    private void createElectricityTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS water_bills(" + 
+        		"`id` INT AUTO_INCREMENT PRIMARY KEY," +
+        	    "`user_id` INT NOT NULL," +
+        	    "`consumption` DECIMAL(10, 2) NOT NULL," +
+        	    "`bill_month` VARCHAR(255) NOT NULL," +
+        	    "`file_content` LONGBLOB, " +
+        	    " FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" +
+        	") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        jdbcTemplate.execute(sql);
+    }
+    
+    private void createOilTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS cooking_oil_bills (" + 
+        		"`id` INT AUTO_INCREMENT PRIMARY KEY,\r\n" + 
+        		"`user_id` INT NOT NULL," + 
+        		"`recycling_days` INT NOT NULL," + 
+        		"`volume` DECIMAL(10, 2) NOT NULL," + 
+        		"`bill_month` VARCHAR(255) NOT NULL," + 
+        		"`file_content` LONGBLOB,\r\n" + 
+        		"FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" + 
+        		") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        jdbcTemplate.execute(sql);
+    }
+    
+    private void createWasteTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS waste_bills (" + 
+        		"`id` INT AUTO_INCREMENT PRIMARY KEY," + 
+        		"`user_id` INT NOT NULL," + 
+        		"`days_produced` INT NOT NULL," + 
+        		"`weight` DECIMAL(10, 2) NOT NULL," + 
+        		"`bill_month` VARCHAR(255) NOT NULL," + 
+        		"`file_content` LONGBLOB," + 
+        		"FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" + 
+        		") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        jdbcTemplate.execute(sql);
+    }
 }
