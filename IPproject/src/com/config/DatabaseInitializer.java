@@ -46,20 +46,20 @@ public class DatabaseInitializer {
         		"`consumption` DECIMAL(10, 2) NOT NULL," + 
         		"`bill_month` VARCHAR(255) NOT NULL," + 
         		"`file_content` LONGBLOB," + 
-        		" FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" + 
-        		") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        		" FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" + 
+        		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
     }
     
     private void createElectricityTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS water_bills(" + 
+        String sql = "CREATE TABLE IF NOT EXISTS electricity_bills(" + 
         		"`id` INT AUTO_INCREMENT PRIMARY KEY," +
         	    "`user_id` INT NOT NULL," +
         	    "`consumption` DECIMAL(10, 2) NOT NULL," +
         	    "`bill_month` VARCHAR(255) NOT NULL," +
         	    "`file_content` LONGBLOB, " +
-        	    " FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" +
-        	") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        	    " FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" +
+        	") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
     }
     
@@ -71,8 +71,8 @@ public class DatabaseInitializer {
         		"`volume` DECIMAL(10, 2) NOT NULL," + 
         		"`bill_month` VARCHAR(255) NOT NULL," + 
         		"`file_content` LONGBLOB,\r\n" + 
-        		"FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" + 
-        		") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        		"FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" + 
+        		") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
     }
     
@@ -84,8 +84,8 @@ public class DatabaseInitializer {
         		"`weight` DECIMAL(10, 2) NOT NULL," + 
         		"`bill_month` VARCHAR(255) NOT NULL," + 
         		"`file_content` LONGBLOB," + 
-        		"FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE" + 
-        		") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        		"FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" + 
+        		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
     }
 }
