@@ -41,17 +41,23 @@
             <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>Phone number</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Households</th>
+            <th>Building Type</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach var="participant" items="${participants}">
-                <tr>
-                <td><a href="<c:url value='/Admin/participantDetails.jsp?id=${participant.id}'/>" target="_self">${participant.name}</a></td>
-                <td>${participant.email}</td>
-                <td><fmt:formatNumber value="${participant.phoneNumber}" pattern="(###) ###-####"/></td>
-                </tr>
-            </c:forEach>
+                    <tr>
+                        <td>${participant.fullname}</td>
+                        <td>${participant.email}</td>
+                        <td>${participant.phoneNumber}</td>
+                        <td>${participant.address}</td>
+                        <td>${participant.households}</td>
+                        <td>${participant.buildingtype}</td>
+                    </tr>
+          	</c:forEach>
         </tbody>
         </table>
     </div>
