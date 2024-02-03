@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -25,7 +25,7 @@
                         <a class="dropdown-item" href="<c:url value='/user/profile'/>">
                             <i class="profile-icon"></i> Profile
                         </a>
-                        <a class="dropdown-item" href="<c:url value='/logout'/>">
+                        <a class="dropdown-item" href="<c:url value='/user/logout'/>">
                             <i class="logout-icon"></i> Logout
                         </a>
                     </div>
@@ -34,7 +34,7 @@
             <h2 class="report-title">
                 <span class="title-background">Home Page</span>
             </h2>
-            <img src="<c:url value='/Images/home_screenshot.png'/>" alt="HomePage">
+            <img src="<c:url value='/Images/home screenshot.png'/>" alt="HomePage">
         </div>
     </div>
     <div class="footer-bar"></div>

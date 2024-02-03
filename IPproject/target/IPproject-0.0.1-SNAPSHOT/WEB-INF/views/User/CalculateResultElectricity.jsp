@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carbon Footprint Calculation Result</title>
-    <link rel="stylesheet" href="<c:url value='/CSS/styles.css'/>">
+    <link rel="stylesheet" href="<c:url value='../css/styles.css'/>">
 </head>
 <body>
     <jsp:include page="../User/SidebarUser.jsp" />

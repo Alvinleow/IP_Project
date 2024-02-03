@@ -52,11 +52,11 @@
 </head>
 <body>
     <div id="sidebarUser">
-        <img src="<c:url value='/images/logo_baru_web.gif'/>" alt="Sidebar Image" class="logo">
-        <a href="<c:url value='/both_view/home_page_user.jsp'/>"><img src="<c:url value='/images/home-48.png'/>" alt="Home Icon" class="icon">Home</a>
-        <a href="<c:url value='/user_view/dashboard_user.jsp'/>"><img src="<c:url value='/images/dashboard-64.png'/>" alt="Dashboard Icon" class="icon">Dashboard</a>
-        <a href="<c:url value='/user_view/chooseMonth.jsp'/>"><img src="<c:url value='/images/link-24.png'/>" alt="Upload Data Icon" class="icon">Upload Data</a>
-        <a href="#"><img src="<c:url value='/images/aboutus.png'/>" alt="About us Icon" class="icon">About us</a>
+        <img src="<c:url value='/Images/logo_baru_web.gif'/>" alt="Sidebar Image" class="logo">
+        <a href="<c:url value='/user/home'/>"><img src="<c:url value='/Images/home-48.png'/>" alt="Home Icon" class="icon">Home</a>
+        <a href="<c:url value='//user/dashboard'/>"><img src="<c:url value='/Images/dashboard-64.png'/>" alt="Dashboard Icon" class="icon">Dashboard</a>
+        <a href="<c:url value='/user/upload'/>"><img src="<c:url value='/Images/link-24.png'/>" alt="Upload Data Icon" class="icon">Upload Data</a>
+        <a href="#"><img src="<c:url value='/Images/aboutus.png'/>" alt="About us Icon" class="icon">About us</a>
     </div>
 
     <!-- 
