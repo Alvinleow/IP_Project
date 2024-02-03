@@ -25,7 +25,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin/generate-report")
-    public ModelAndView showGenerateReportPage() {
+    public ModelAndView showGenerateReportSidebar() {
         ModelAndView mav = new ModelAndView("Admin/generateReportSidebar");
         // Add objects to the model if needed
         return mav;
@@ -46,6 +46,13 @@ public class AdminController {
         return mav;
     }
 
+    @GetMapping("/admin/generateReport")
+    public ModelAndView showGenerateReportPage() {
+        ModelAndView mav = new ModelAndView("Admin/generateReport");
+        // Add objects to the model if needed
+        return mav;
+    }
+    
     // If you have a logout functionality, add this:
     @GetMapping("/admin/logout")
     public String logout(HttpServletRequest request) {
