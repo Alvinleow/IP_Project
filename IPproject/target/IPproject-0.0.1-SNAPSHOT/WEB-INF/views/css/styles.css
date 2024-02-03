@@ -1,0 +1,288 @@
+@charset "ISO-8859-1";
+
+/* Common Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+  width: 100%;
+}
+
+.description{
+  font-family: 'Arial', sans-serif;
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.contain-container {
+  background: white;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  width: 654px;
+}
+
+.user-icon img {
+  height: 50px;
+  width: auto;
+  cursor: pointer;
+}
+
+.title {
+  text-align: left;
+  margin-bottom: 2em;
+}
+
+.title-background {
+  background-color: #FFCC16;
+  padding: 0.5em;
+}
+
+.logo-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-container {
+  position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  overflow: hidden; /* Ensures the child elements adhere to the border radius */
+  z-index: 1;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.2s; /* Smooth background transition */
+}
+
+.profile-icon:before,
+.logout-icon:before {
+  content: "";
+  display: inline-block;
+  width: 20px; /* Adjust as needed */
+  height: 20px; /* Adjust as needed */
+  background-size: contain; /* Ensure the image fits within the element */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  margin-right: 10px;
+}
+
+.profile-icon:before {
+  background-image: url('../Images/profile_icon.png'); /* Replace with your profile icon path */
+}
+
+.logout-icon:before {
+  background-image: url('../Images/logout_icon.png'); /* Replace with your logout icon path */
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Category Selection */
+.category-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.category-item {
+  margin-bottom: 15px;
+}
+
+.button-number {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.category-button {
+  background-color: #ff814b;
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 200px;
+}
+
+.category-button:hover {
+  opacity: 0.8;
+}
+
+.check-icon.completed {
+  position: absolute;
+  bottom: 5px; /* Adjust as needed */
+  left: 5px; /* Adjust as needed */
+  width: 20px; /* Size of the green tick icon */
+  display: block; /* Override any 'none' display */
+}
+
+/* Choose Month */
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 columns for the months */
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.month-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.month-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.check-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px; /* Adjust based on your image size */
+  display: none; /* Hide by default */
+}
+
+.month-number {
+  color: #666;
+}
+
+
+/* Upload All Types of Bill */
+.upload-instructions {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+  margin: auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+input[type="file"],
+input[type="text"] {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: calc(100% - 22px);
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.UBill-title{
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Footer styles */
+.footer-bar {
+  background-color: rgb(38,123,251);
+  width: 100%;
+  height: 50px;
+  color: white;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}
+
+/* Calculate Result*/
+.result-value {
+  font-size: 2em;
+  font-weight: bold;
+  color: black;
+  background-color:#ccc;
+  padding: 10px;
+  text-align: center;
+  width: fit-content;
+  margin: 20px auto;
+}
+
+.show-calculation {
+  background-color: grey;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 5px auto;
+}
+
+.calculation-details {
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  display: none;
+  margin: auto;
+  width: 400px;
+}
+
+.finish-button {
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.button-container {
+  text-align: center;
+  margin-bottom: 20px;
+}

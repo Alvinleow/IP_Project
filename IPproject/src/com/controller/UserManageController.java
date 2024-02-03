@@ -1,6 +1,6 @@
 package com.controller;
 
-import java.sql.PreparedStatement;
+import java.sql.PreparedStatement;	
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,37 +42,37 @@ public class UserManageController {
 	                               RedirectAttributes redirectAttributes, 
 	                               HttpServletRequest request) {
 	    
-	    String sql = "SELECT password, userLevel FROM user WHERE username = ?";
+	    String sql = "SELECT id, password, userLevel FROM user WHERE username = ?";
 	    
 	    try {
 	        Map<String, Object> user = jdbcTemplate.queryForMap(sql, username);
 	        
 	        if (password.equals(user.get("password"))) {
-	        	
+	            
 	            HttpSession session = request.getSession();
 	            session.setAttribute("userId", user.get("id"));
 	            session.setAttribute("username", username);
 	            session.setAttribute("userLevel", user.get("userLevel"));
 
 	            if ((int) user.get("userLevel") == 0) {
-	            	
-	                return "redirect:/HomePageUser";
+	                
+	                return "redirect:/user/home";
 	            } else if ((int) user.get("userLevel") == 1) {
-	            	
+	                
 	                return "redirect:/adminHomePage";
 	            }
 	            
 	        } else {
-	        	
+	            
 	            redirectAttributes.addFlashAttribute("error", "The username or password is incorrect.");
 	            return "redirect:/login";
 	        }
 	    } catch (EmptyResultDataAccessException e) {
-	    	
+	        
 	        redirectAttributes.addFlashAttribute("error", "This username is not registered yet.");
 	        return "redirect:/login";
 	    } catch (Exception e) {
-	    	
+	        
 	        redirectAttributes.addFlashAttribute("error", "An error occurred. Please try again.");
 	        return "redirect:/login";
 	    }
@@ -82,12 +82,10 @@ public class UserManageController {
 	    return "redirect:/login";
 	}
 	
-	@GetMapping("/adminHomePage")
+	@RequestMapping("/adminHomePage")
 	public String showAdminHomePage() {
 		return "Admin/adminHomePage";
 	}
-	
-	
     
     @RequestMapping("/register")
     public ModelAndView showRegistrationForm() {
