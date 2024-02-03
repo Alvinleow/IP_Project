@@ -47,14 +47,6 @@ public class AdminController {
         return mav;
     }
 
-    // If you have a profile page, add this:
-    @RequestMapping("/admin/profile")
-    public ModelAndView showAdminProfile() {
-        ModelAndView mav = new ModelAndView("Admin/adminProfile");
-        // Add objects to the model if needed
-        return mav;
-    }
-
     // If you have a logout functionality, add this:
     @RequestMapping("/admin/logout")
     public String logout(HttpServletRequest request) {
