@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,14 +8,10 @@
     <title>Upload Electricity Bill</title>
     <link rel="stylesheet" href="<c:url value='../css/styles.css'/>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(function(){
-            $("#sidebarUser").load("<c:url value='/user_view/sidebarUser.jsp'/>"); 
-        });
-    </script>
+
 </head>
 <body>
-    <div id="sidebarUser"></div>
+<jsp:include page="../User/SidebarUser.jsp" />
     <div class="top">
         <div class="logo-container">
             <img src="<c:url value='/Images/MBIP_LOGO.png'/>" alt="MBIP_LOGO" >
@@ -25,7 +22,7 @@
                 <a class="dropdown-item" href="<c:url value='/user/profile'/>">
                     <i class="profile-icon"></i> Profile
                 </a>
-                <a class="dropdown-item" href="<c:url value='/user/logout'/>">
+                <a class="dropdown-item" href="<c:url value='/logout'/>">
                     <i class="logout-icon"></i> Logout
                 </a>
             </div>

@@ -8,11 +8,7 @@
 <title>User Profile</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userProfile.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(function(){
-      $("#SidebarUser").load("<c:url value='/User/SidebarUser.jsp'/>"); 
-    });
-</script>
+
 </head>
 <body>
 <jsp:include page="../User/SidebarUser.jsp" />

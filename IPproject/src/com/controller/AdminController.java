@@ -124,11 +124,11 @@ public class AdminController {
     }
     
     // If you have a logout functionality, add this:
-    @RequestMapping("/admin/logout")
-    public String logout(HttpServletRequest request) {
-        request.getSession().invalidate();
-        return "redirect:/login";
-    }
+//    @RequestMapping("/admin/logout")
+//    public String logout(HttpServletRequest request) {
+//        request.getSession().invalidate();
+//        return "redirect:/login";
+//    }
     
     @GetMapping("/admin/profile")
     public ModelAndView showAdminProfile(HttpServletRequest request) {

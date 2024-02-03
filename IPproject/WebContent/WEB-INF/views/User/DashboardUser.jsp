@@ -29,7 +29,7 @@
                 <a class="dropdown-item" href="<c:url value='../user/profile'/>">
                     <i class="profile-icon"></i> Profile
                 </a>
-                <a class="dropdown-item" href="<c:url value='../user/logout.jsp'/>">
+                <a class="dropdown-item" href="<c:url value='/logout'/>">
                     <i class="logout-icon"></i> Logout
                 </a>
             </div>
