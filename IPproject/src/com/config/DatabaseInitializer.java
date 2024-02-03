@@ -46,6 +46,7 @@ public class DatabaseInitializer {
         		"`consumption` DECIMAL(10, 2) NOT NULL," + 
         		"`bill_month` VARCHAR(255) NOT NULL," + 
         		"`file_content` LONGBLOB," + 
+        		"`verify_status` VARCHAR(10) DEFAULT 'No'," +
         		" FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" + 
         		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
@@ -58,6 +59,7 @@ public class DatabaseInitializer {
         	    "`consumption` DECIMAL(10, 2) NOT NULL," +
         	    "`bill_month` VARCHAR(255) NOT NULL," +
         	    "`file_content` LONGBLOB, " +
+        	    "`verify_status` VARCHAR(10) DEFAULT 'No'," +
         	    " FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" +
         	    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
@@ -71,6 +73,7 @@ public class DatabaseInitializer {
         		"`volume` DECIMAL(10, 2) NOT NULL," + 
         		"`bill_month` VARCHAR(255) NOT NULL," + 
         		"`file_content` LONGBLOB,\r\n" + 
+        		"`verify_status` VARCHAR(10) DEFAULT 'No'," +
         		"FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" + 
         		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
@@ -83,6 +86,7 @@ public class DatabaseInitializer {
         		"`days_produced` INT NOT NULL," + 
         		"`weight` DECIMAL(10, 2) NOT NULL," + 
         		"`bill_month` VARCHAR(255) NOT NULL," + 
+        		"`verify_status` VARCHAR(10) DEFAULT 'No'," +
         		"FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE" + 
         		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
         jdbcTemplate.execute(sql);
