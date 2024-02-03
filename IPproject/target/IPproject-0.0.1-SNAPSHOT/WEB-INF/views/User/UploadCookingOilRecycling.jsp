@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
-<jsp:include page="../User/sidebarUser.jsp" />
+<jsp:include page="../User/SidebarUser.jsp" />
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Water Bill</title>
-    <link rel="stylesheet" href="<c:url value='/CSS/styles.css'/>">
+    <link rel="stylesheet" href="<c:url value='../css/styles.css'/>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(function(){
@@ -16,19 +16,19 @@
     </script>
 </head>
 <body>
-    <jsp:include page="../user_view/sidebarUser.jsp" />
+    <jsp:include page="../User/SidebarUser.jsp" />
 
     <div class="top">
         <div class="logo-container">
-            <img src="<c:url value='/images/MBIP_LOGO.png'/>" alt="MBIP_LOGO" >
+            <img src="<c:url value='/Images/MBIP_LOGO.png'/>" alt="MBIP_LOGO" >
         </div>
         <div class="icon-container">
-            <img src="<c:url value='/images/user_icon.png'/>" alt="user_icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
+            <img src="<c:url value='/Images/user_icon.png'/>" alt="user_icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
             <div class="dropdown-menu" aria-labelledby="userIcon">
-                <a class="dropdown-item" href="<c:url value='/user_view/user_profile.jsp'/>">
+                <a class="dropdown-item" href="<c:url value='/user/profile'/>">
                     <i class="profile-icon"></i> Profile
                 </a>
-                <a class="dropdown-item" href="<c:url value='/both_view/logout_page.jsp'/>">
+                <a class="dropdown-item" href="<c:url value='/user/logout'/>">
                     <i class="logout-icon"></i> Logout
                 </a>
             </div>

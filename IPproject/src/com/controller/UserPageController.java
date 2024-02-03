@@ -1,8 +1,15 @@
 package com.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,39 +18,85 @@ import javax.servlet.http.HttpSession;
 public class UserPageController {
 
     // Mapping for the user's home page
-    @GetMapping("/home")
-    public String showUserHomePage() {
-        return "User/HomePageUser"; // Path to the JSP for the user home page
+    @RequestMapping("/home")
+    public ModelAndView showUserHomePage() {
+    	ModelAndView mav = new ModelAndView("User/HomePageUser");
+        return mav; // Path to the JSP for the user home page
     }
 
     // Mapping for the user's profile page
-    @GetMapping("/profile")
-    public String showUserProfile() {
-        return "User/userProfile"; // Path to the JSP for the user profile page
+    @RequestMapping("/profile")
+    public ModelAndView showUserProfile() {
+    	ModelAndView mav = new ModelAndView("User/UserProfile");
+        return mav;
     }
 
-    // Mapping for the user's dashboard
-    @GetMapping("/dashboard")
-    public String showUserDashboard() {
-        return "User/userDashboard"; // Path to the JSP for the user dashboard
+    @RequestMapping("/dashboard")
+    public ModelAndView showUserDashboard() {
+    	ModelAndView mav = new ModelAndView("User/DashboardUser");
+        return mav;
+    }
+    
+    // Mapping for the user's upload page
+    @RequestMapping("/upload")
+    public ModelAndView showUserUpload() {
+    	ModelAndView mav = new ModelAndView("User/ChooseMonth");
+        return mav;
     }
 
-    // Mapping for the user's settings page
-    @GetMapping("/settings")
-    public String showUserSettings() {
-        return "User/userSettings"; // Path to the JSP for the user settings page
+    // Mapping for the user's about us page
+    @RequestMapping("/aboutUs")
+    public ModelAndView showAboutUs() {
+    	ModelAndView mav = new ModelAndView("User/AboutUs");
+        return mav; 
     }
 
     // Mapping for the logout process
-    @GetMapping("/logout")
+    @RequestMapping("/logout")
     public String logoutUser(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate(); // Invalidate the session to logout the user
         }
-        return "redirect:/logoutPage"; // Redirect to the logout page
+        return "General/LogoutPage"; // Path to the JSP for the logout confirmation page
+    }
+    
+    // Mapping for choosing the category of bill to upload
+    @RequestMapping("/chooseCategory")
+    public ModelAndView chooseCategory(@RequestParam(required = false) String month, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("User/ChooseCategory");
+        HttpSession session = request.getSession();
+        session.setAttribute("selectedMonth", month);
+        return mav;
+    }
+    
+    // Mapping for the upload water bill page
+    @RequestMapping("/water")
+    public ModelAndView showWaterUpload() {
+    	ModelAndView mav = new ModelAndView("User/UploadWaterBill");
+    	return mav;
+    }
+    
+    // Mapping for the upload electricity bill page
+    @RequestMapping("/electricity")
+    public ModelAndView showElectricityUpload() {
+    	ModelAndView mav = new ModelAndView("User/UploadElectricityBill");
+    	return mav;
+    }
+    
+    // Mapping for the upload waste bill page
+    @RequestMapping("/waste")
+    public ModelAndView showWasteUpload() {
+    	ModelAndView mav = new ModelAndView("User/UploadWasteBill");
+    	return mav;
+    }
+    
+    // Mapping for the upload cooking oil recycling bill page
+    @RequestMapping("/oil")
+    public ModelAndView showOilUpload() {
+    	ModelAndView mav = new ModelAndView("User/UploadCookingOilRecycling");
+    	return mav;
     }
 
     // Additional methods can be added here for other user pages...
-
 }
