@@ -19,6 +19,7 @@ public class DatabaseInitializer {
         createElectricityTable();
         createWasteTable();
         createOilTable();
+        createDefaultAdminAccount();
     }
     
     private void createUserTable() {
@@ -37,6 +38,18 @@ public class DatabaseInitializer {
                 ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
     	
         jdbcTemplate.execute(sql);
+    }
+    
+    private void createDefaultAdminAccount() {
+        // Check if the admin account already exists
+        String checkSql = "SELECT COUNT(*) FROM user WHERE username = 'admin'";
+        Integer count = jdbcTemplate.queryForObject(checkSql, Integer.class);
+        if (count == null || count == 0) {
+            // If admin account does not exist, insert the default admin account
+            String insertSql = "INSERT INTO user (fullname, email, username, password, userLevel) " +
+                    "VALUES (?, ?, ?, ?)";
+            jdbcTemplate.update(insertSql, "Admin Account", "admin@gmail.com", "admin", "admin1", 1);
+        }
     }
     
     private void createWaterTable() {

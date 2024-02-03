@@ -19,17 +19,24 @@ body {
         }
 
         .success-icon {
-            margin-top: 100px;
-            max-width: 30%;
+            margin-top: 30px;
+    		max-width: 40%;
         }
-
+		.message-wrapper {
+		  	display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    background: white;
+		    padding: 2em;
+		    border-radius: 10px;
+		    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+		  }
         p {
             margin-top: 50px;
             font-weight: bold;
         }
 
         button {
-            width: 20%;
             padding: 10px;
             border: none;
             border-radius: 5px;

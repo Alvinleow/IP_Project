@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
 
@@ -114,5 +116,44 @@ public class UserPageController {
     	return mav;
     }
 
-    // Additional methods can be added here for other user pages...
+    @GetMapping("/editProfile")
+    public ModelAndView showEditProfile(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+        ModelAndView mav = new ModelAndView("User/editProfile");
+
+        if (userId != null) {
+            try {
+                String sql = "SELECT * FROM user WHERE id = ?";
+                Map<String, Object> user = jdbcTemplate.queryForMap(sql, userId);
+                mav.addObject("user", user);
+            } catch (Exception e) {
+                mav.addObject("errorMessage", "Error retrieving user profile for editing: " + e.getMessage());
+            }
+        } else {
+            mav.addObject("errorMessage", "Session expired or user not found.");
+        }
+        return mav;
+    }
+    
+    @PostMapping("/updateProfile")
+    public String updateProfile(@RequestParam Map<String, String> params, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Session expired. Please login again.");
+            return "redirect:/login";
+        }
+
+        try {
+            String sql = "UPDATE user SET email = ?, phoneNumber = ?, address = ?, households = ?, buildingtype = ? WHERE id = ?";
+            jdbcTemplate.update(sql, params.get("email"), params.get("phoneNumber"), params.get("address"), Integer.parseInt(params.get("households")), params.get("buildingtype"), userId);
+            redirectAttributes.addFlashAttribute("successMessage", "Profile updated successfully.");
+            return "redirect:/user/profile";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error updating profile: " + e.getMessage());
+            return "redirect:/user/editProfile";
+        }
+    }
 }
