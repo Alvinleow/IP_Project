@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Account</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/register1.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/background.css'/>">
 </head>
 <body>
 <div class="register-wrapper">
@@ -25,7 +26,7 @@
     </div>
     
     <form class="register-form" action="<c:url value='/register'/>" method="post">
-        <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+        <input type="text" id="fullname" name="fullname" placeholder="Full Name with all CAPITAL LETTERS" required>
         <input type="text" id="address" name="address" placeholder="Residential Address" autocomplete="address-line1" required>
         <input type="number" id="households" name="households" placeholder="Number of Households" required>
         <select id="buildingtype" name="buildingtype" required>
