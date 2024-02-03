@@ -1,14 +1,14 @@
 package com.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,7 +16,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user") // Base URL for all user-related pages
 public class UserPageController {
-
+	
+	@Autowired
+    private JdbcTemplate jdbcTemplate;
+	
     // Mapping for the user's home page
     @RequestMapping("/home")
     public ModelAndView showUserHomePage() {
@@ -24,10 +27,23 @@ public class UserPageController {
         return mav; // Path to the JSP for the user home page
     }
 
-    // Mapping for the user's profile page
-    @RequestMapping("/profile")
-    public ModelAndView showUserProfile() {
-    	ModelAndView mav = new ModelAndView("User/UserProfile");
+    @GetMapping("/profile")
+    public ModelAndView showUserProfile(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+        ModelAndView mav = new ModelAndView("Admin/adminProfile");
+        
+        if (userId != null) {
+            try {
+                String sql = "SELECT * FROM user WHERE id = ?";
+                Map<String, Object> user = jdbcTemplate.queryForMap(sql, userId);
+                mav.addObject("user", user);
+            } catch (Exception e) {
+                mav.addObject("errorMessage", "Error retrieving user profile: " + e.getMessage());
+            }
+        } else {
+            mav.addObject("errorMessage", "Session expired or user not found.");
+        }
         return mav;
     }
 

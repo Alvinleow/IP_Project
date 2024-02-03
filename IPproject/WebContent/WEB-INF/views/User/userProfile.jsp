@@ -1,22 +1,21 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" session="true" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Profile</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminProfile.css">
+<title>User Profile</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userProfile.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(function(){
-      $("#sidebarAdmin").load("<c:url value='/Admin/adminSidebar.jsp'/>"); 
+      $("#SidebarUser").load("<c:url value='/User/SidebarUser.jsp'/>"); 
     });
 </script>
-<!-- Rest of the head content -->
 </head>
 <body>
-<jsp:include page="../Admin/adminSidebar.jsp" />
+<jsp:include page="../User/SidebarUser.jsp" />
 <div class="main-content">
   <div class="report-container">
     <div class="top">

@@ -186,5 +186,73 @@ public class UserManageController {
 	    }
 	    return "General/logoutPage"; // display the logout confirmation page
 	}
+    
+    @GetMapping("/forgetPassword")
+    public String showForgetPassword() {
+        return "General/forgetPassword1";
+    }
+    
+    @PostMapping("/processForgetPassword")
+    public String processForgetPassword(@RequestParam String email,
+                                        @RequestParam String username,
+                                        HttpServletRequest request,
+                                        RedirectAttributes redirectAttributes) {
+        try {
+            String sql = "SELECT id, username FROM user WHERE email = ?";
+            Map<String, Object> userData = jdbcTemplate.queryForMap(sql, email);
 
+            if (username.equals(userData.get("username"))) {
+                HttpSession session = request.getSession();
+                session.setAttribute("userId", userData.get("id"));
+                return "redirect:/forgetPassword2";
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Incorrect username.");
+                return "redirect:/forgetPassword";
+            }
+        } catch (EmptyResultDataAccessException e) {
+            redirectAttributes.addFlashAttribute("error", "Email not found.");
+            return "redirect:/forgetPassword";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "An error occurred. Please try again.");
+            return "redirect:/forgetPassword";
+        }
+    }
+    
+    @GetMapping("/forgetPassword2")
+    public String showForgetPassword2() {
+        return "General/forgetPassword2";
+    }
+    
+    @PostMapping("/updatePassword")
+    public String updatePassword(@RequestParam String newPassword,
+                                 @RequestParam String confirmPassword,
+                                 HttpServletRequest request,
+                                 RedirectAttributes redirectAttributes) {
+        HttpSession session = request.getSession(false);
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId == null) {
+            redirectAttributes.addFlashAttribute("error", "Session expired. Please try again.");
+            return "redirect:/forgetPassword";
+        }
+
+        if (!newPassword.equals(confirmPassword)) {
+            redirectAttributes.addFlashAttribute("error", "Passwords do not match.");
+            return "redirect:/forgetPassword2";
+        }
+
+        try {
+            String sql = "UPDATE user SET password = ? WHERE id = ?";
+            jdbcTemplate.update(sql, newPassword, userId);
+            return "redirect:/resetSuccessful";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "An error occurred while updating the password. Please try again.");
+            return "redirect:/forgetPassword2";
+        }
+    }
+    
+    @GetMapping("/resetSuccessful")
+    public String showResetSuccessful() {
+        return "General/resetSuccessful";
+    }
 }
