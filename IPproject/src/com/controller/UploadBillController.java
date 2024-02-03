@@ -2,8 +2,6 @@ package com.controller;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
