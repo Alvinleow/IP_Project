@@ -54,13 +54,40 @@ public class AdminController {
     
     @GetMapping("/admin/verify-upload")
     public ModelAndView verifyUpload(@RequestParam("month") String month, @RequestParam("category") String category, HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("Admin/verificationPage"); // Change to your actual verification page view name
+        ModelAndView mav = new ModelAndView("Admin/verificationPage");
         mav.addObject("selectedMonth", month);
         mav.addObject("selectedCategory", category);
-        // Perform the verification process or add necessary data to the model
+        
+        String sql = "";
+        switch (category.toLowerCase()) {
+            case "water":
+            case "electricity":
+                sql = "SELECT id, user_id, consumption, file_content FROM " + category + "_bills WHERE verify_status = 'No' AND bill_month = ?";
+                break;
+            case "waste":
+                sql = "SELECT id, user_id, days_produced, weight FROM waste_bills WHERE verify_status = 'No' AND bill_month = ?";
+                break;
+            case "cooking_oil":
+                sql = "SELECT id, user_id, recycling_days, volume, file_content FROM cooking_oil_bills WHERE verify_status = 'No' AND bill_month = ?";
+                break;
+        }
+
+        List<Map<String, Object>> unverifiedData = jdbcTemplate.queryForList(sql, month);
+        mav.addObject("unverifiedData", unverifiedData);
         return mav;
     }
 
+    @GetMapping("/admin/verify")
+    public String verifyData(@RequestParam("id") int id, @RequestParam("category") String category, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        String sql = "UPDATE " + category + "_bills SET verify_status = 'Yes' WHERE id = ?";
+        try {
+            jdbcTemplate.update(sql, id);
+            redirectAttributes.addFlashAttribute("successMessage", "Data verified successfully.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error verifying data: " + e.getMessage());
+        }
+        return "redirect:/admin/verify-upload?month=" + request.getParameter("month") + "&category=" + category;
+    }
 
 
     @GetMapping("/admin/generate-report")
@@ -98,11 +125,11 @@ public class AdminController {
     }
     
     // If you have a logout functionality, add this:
-    @RequestMapping("/admin/logout")
-    public String logout(HttpServletRequest request) {
-        request.getSession().invalidate();
-        return "redirect:/login";
-    }
+//    @RequestMapping("/admin/logout")
+//    public String logout(HttpServletRequest request) {
+//        request.getSession().invalidate();
+//        return "redirect:/login";
+//    }
     
     @GetMapping("/admin/profile")
     public ModelAndView showAdminProfile(HttpServletRequest request) {

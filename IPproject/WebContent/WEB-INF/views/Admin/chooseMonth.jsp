@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choose Month</title>
-    <link rel="stylesheet" href="<c:url value='/css/styles.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/chooseMonth.css'/>">
 </head>
 <body>
 <jsp:include page="../Admin/adminSidebar.jsp" />
@@ -40,6 +40,15 @@
                 <option value="January">January</option>
                 <option value="February">February</option>
                 <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>             
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
                 <!-- Add other months -->
             </select>
             <button type="submit">Next</button>
@@ -48,5 +57,25 @@
   </div>
 </div>
 <div class="footer-bar"></div>
+
+<script>
+    // Pure JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      var userIcon = document.getElementById("userIcon");
+      var dropdownMenu = document.querySelector(".dropdown-menu");
+    
+      userIcon.addEventListener("click", function(event) {
+        dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        event.stopPropagation(); // Prevent the click from being detected by the window event
+      });
+    
+      window.addEventListener("click", function() {
+        if (dropdownMenu.style.display === "block") {
+          dropdownMenu.style.display = "none";
+        }
+      });
+    });
+</script>
+
 </body>
 </html>
