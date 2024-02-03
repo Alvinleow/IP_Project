@@ -32,7 +32,7 @@
                 <p>${ElectricConsumption}kWh x ${co2PerKwh} kgCO2/kWh = ${carbonFootprint} kgCO2</p>
             </div>
             <div class="button-container">
-                <button type="button" class="finish-button" onclick="window.location.href='<c:url value="/user/chooseCategory"/>';">Finish</button>
+                <button type="button" class="finish-button" onclick="window.location.href='<c:url value="/user/upload"/>';">Finish</button>
             </div>
         </div>
     </div>
