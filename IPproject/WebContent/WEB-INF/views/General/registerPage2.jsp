@@ -26,19 +26,9 @@
 
         <form class="register-form" action="<c:url value='/registerProcess2'/>" method="post">
             <input type="email" id="email" name="email" placeholder="Email" required>
-            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" pattern="[0-9]{11}" maxlength="11" required>
-            <div class="confirm-code">
-                <div class="code-input">
-                    <p>Confirmation Code</p>
-                    <input type="text" id="confirmCode" name="confirmCode" placeholder="  —  —  —  —  " pattern="[0-9]{4}" maxlength="4" required>
-                </div>
-                <div class="resend-button">
-                    <button type="button">
-                        <img src="<c:url value='/Images/resend.png'/>" alt="Resend" class="resend-icon">
-                        Send Again
-                    </button>
-                </div>
-            </div>
+            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" pattern="\d{10,11}" maxlength="11" required
+            title="Phone number must be 10 or 11 digits" >
+
             <button type="submit" class="submit-button">Next</button>
             <div class="footer">
             Already have an account? <a href="<c:url value='/login'/>">Log In</a>

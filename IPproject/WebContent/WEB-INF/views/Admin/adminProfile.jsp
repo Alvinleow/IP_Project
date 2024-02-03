@@ -101,6 +101,11 @@
             </div>
 
         </div>
+        <div class="edit-profile-button-container">
+		    <form action="<c:url value='/admin/editProfile'/>" method="get">
+		        <button type="submit" class="edit-profile-button">Edit Profile</button>
+		    </form>
+		</div>
     </div>
 
   </div>

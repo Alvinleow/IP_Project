@@ -1,0 +1,157 @@
+@charset "ISO-8859-1";
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #backButton {
+    cursor: pointer;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+  .register-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header {
+    margin-bottom: 30px;
+  }
+  .register-container {
+    background: white;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 654px;
+    margin-bottom: 100px
+  }
+  .register-title {
+    font-size: 1.5em;
+    color: #333;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 10px
+    
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+	
+  .register-form input[type="email"],
+  .register-form input[type="tel"],
+  .register-form input[type="text"],
+  .register-form input[type="number"],
+  .register-form select {
+    width: 634px;
+    height:30px;
+    padding: 10px;
+    margin-bottom: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+
+  .register-form select {
+    height: 51.6px;
+    width: 655.6px;
+  }
+
+  .register-form input[type="email"]:focus,
+  .register-form input[type="tel"]:focus,
+  .register-form input[type="text"]:focus,
+  .register-form input[type="number"]:focus,
+  .register-form select:focus {
+    border: 1px solid #007AFF;
+    outline: none;
+  }
+
+  .register-form button {
+    width: 75%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff6600;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  .register-form button:hover {
+    background-color: #e65c00;
+  }
+  .register-form .footer {
+    text-align: center;
+    margin-top: 1em;
+  }
+  .register-form .footer a {
+    color: #ff6600;
+    text-decoration: none;
+  }
+  .register-form .footer a:hover {
+    text-decoration: underline;
+  }
+  .footer-bar {
+    background-color: rgb(38,123,251);
+    width: 100%;
+    /* padding: 10px; */
+    height: 50px;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+  }
+
+  .steps-indicator {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+
+  .steps-indicator ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    width: 125px;
+    align-items: center; /* Align the dots and lines */
+    justify-content: space-between;
+  }
+
+  .steps-indicator li {
+    position: relative;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%; /* Makes it round */
+    background: white; /* Default color for upcoming step */
+    border: 1px solid #d3d3d3;
+  }
+
+  .steps-indicator li.completed, .steps-indicator li.active {
+    background: #007AFF;
+    border: 1px solid #007AFF;
+  }
+
+    /* Pseudo-element for the line */
+  .steps-indicator li::after {
+    content: '';
+    position: absolute;
+    top: 50%; /* Center the line vertically */
+    left: 18px;
+    width: 30px; /* Line width - should be the same as the space between dots */
+    height: 1px; /* Line thickness */
+    background: #d3d3d3; /* Line color */
+  }
+
+  /* Remove the line after the last dot */
+  .steps-indicator li:last-child::after {
+    display: none;
+  }
