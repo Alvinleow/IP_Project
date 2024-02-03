@@ -58,7 +58,8 @@
 	    <a href="<c:url value='/admin/home'/>"><img src="<c:url value='/Images/home-48.png'/>" alt="Home Icon" class="icon">Home</a>
 	    <!-- <a href="#"><img src="<c:url value='/Images/calendar-50.png'/>" alt="Calendar Icon" class="icon">Calendar</a> -->
 	    <a href="<c:url value='/admin/dashboard'/>"><img src="<c:url value='/Images/dashboard-64.png'/>" alt="Dashboard Icon" class="icon">Dashboard</a>
-	    <a href="<c:url value='/admin/generate-report'/>"><img src="<c:url value='/Images/report-50.png'/>" alt="Report Icon" class="icon">Calculation/Generate Report</a>
+	    <a href="<c:url value='/admin/verify-upload-month'/>"><img src="<c:url value='/Images/uploadicon.png'/>" alt="Upload Icon" class="icon">Verify Upload</a>
+	    <a href="<c:url value='/admin/generate-report'/>"><img src="<c:url value='/Images/report-50.png'/>" alt="Report Icon" class="icon">Generate Report</a>
 	    <a href="<c:url value='/admin/participants'/>"><img src="<c:url value='/Images/person-64.png'/>" alt="Participants Icon" class="icon">View Participants</a>
 	</div>
 

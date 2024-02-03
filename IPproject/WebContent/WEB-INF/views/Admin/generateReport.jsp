@@ -1,11 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate Report</title>
-    <link rel="stylesheet" href="../css/generateReport.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/generateReport.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -17,18 +19,17 @@
 </head>
 <body>
 <jsp:include page="../Admin/adminSidebar.jsp" />
-<div id="sidebarAdmin"></div>
 <div class="top">
     <div class="logo-container">
-      <img src="../Images/MBIP_LOGO.png" alt="MBIP_LOGO" >
+      <img src="<c:url value='/Images/MBIP_LOGO.png'/>" alt="MBIP_LOGO" >
   	</div>
   	<div class="icon-container">
-      <img src="../Images/user_icon.png" alt="user_icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
+      <img src="<c:url value='/Images/user_icon.png'/>" alt="user_icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
       <div class="dropdown-menu" aria-labelledby="userIcon">
-          <a class="dropdown-item" href="../Admin/adminProfile.jsp">
+          <a class="dropdown-item" href="<c:url value='/admin/profile'/>">
               <i class="profile-icon"></i> Profile
           </a>
-          <a class="dropdown-item" href="../General/">
+          <a class="dropdown-item" href="<c:url value='/logout'/>">
               <i class="logout-icon"></i> Logout
           </a>
       </div>

@@ -39,11 +39,8 @@
                 <p>{Cooking Oil Consumption} L x 2.860 kgCO2 /L = {Carbon Footprint} kgCO2</p>
             </div>
             <div class="buttons-container">
-                <a href="<c:url value='/calculate'/>" target="_self">
-                    <button class="calculate-btn">Calculate</button>
-                </a>
-                <br><br>
-                <a href="<c:url value='/Admin/generateReport.jsp'/>" target="_self">
+                
+                <a href="<c:url value='/admin/generateReport'/>" target="_self">
                     <button class="view-report-btn">View Report</button>
                 </a>
             </div>
