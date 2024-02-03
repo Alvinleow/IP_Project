@@ -1,6 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page session="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +44,7 @@
         <div class="profile-title">
             <div class="user-icon"><img src="../Images/user_icon.png" alt="user_icon" width="95" height="95" id="userIcon"></div>
             <div class="user-title">
-                <p class="user-name">Alvin Leow Yan Kai</p>
+                <p class="user-name">${user.fullname}</p>
                 <p class="user-text">Personal Info</p>
             </div>
         </div>
@@ -56,7 +55,7 @@
                     <img src="../Images/profile_icon1.png" alt="profile_icon">
                 </div>
                 <div class="text">
-                    Username: alvinleow0816
+                    Username: ${user.username}
                 </div>
             </div>
             <div class="information">
@@ -64,7 +63,7 @@
                     <img src="../Images/email_icon.png" alt="email_icon">
                 </div>
                 <div class="text">
-                    Email: alvinleow@gmail.com
+                    Email: ${user.email}
                 </div>
             </div>
             <div class="information">
@@ -72,7 +71,7 @@
                     <img src="../Images/tel_icon.png" alt="phone_icon">
                 </div>
                 <div class="text">
-                    Phone number: +6010-5218168
+                    Phone number: ${user.phoneNumber}
                 </div>
             </div>
             <div class="information">
@@ -81,7 +80,7 @@
                 </div>
                 <div class="text">
                     Residential Address: 
-                    72, Jalan Pulai Perdana 8, Taman Sri Pulai Perdana, 81300 Skudai, Johor
+                    ${user.address}
                 </div>
             </div>
             <div class="information">
@@ -89,7 +88,7 @@
                     <img src="../Images/numbers_households_icon.png" alt="numbers_households_icon">
                 </div>
                 <div class="text">
-                    Number of Households: 1
+                    Number of Households: ${user.households}
                 </div>
             </div>
             <div class="information">
@@ -97,7 +96,7 @@
                     <img src="../Images/building_icon.png" alt="building_icon">
                 </div>
                 <div class="text">
-                    Type of Building: Terrace House
+                    Type of Building: ${user.buildingtype}
                 </div>
             </div>
 
@@ -105,7 +104,9 @@
     </div>
 
   </div>
-</div><div class="footer-bar"></div>
+</div>
+
+<div class="footer-bar"></div>
 
 <script>
     // Pure JavaScript
