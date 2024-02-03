@@ -78,7 +78,7 @@
 	                <td>
 	                    <c:choose>
 	                        <c:when test="${selectedCategory == 'water' || selectedCategory == 'electricity' || selectedCategory == 'cooking_oil'}">
-	                            <a href="<c:url value='/path/to/download?fileId=${data.id}'/>">Download File</a>
+	                            <a href="<c:url value='/downloadFile?fileId=${data.id}'/>">Download File</a>
 	                        </c:when>
 	                        <c:otherwise>
 	                            N/A
