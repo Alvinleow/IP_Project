@@ -87,7 +87,10 @@ public class UserManageController {
 		return "Admin/adminHomePage";
 	}
 	
-	
+	@GetMapping("/HomePageUser")
+	public String showUserHomePage() {
+		return "User/HomePageUser";
+	}
     
     @RequestMapping("/register")
     public ModelAndView showRegistrationForm() {
