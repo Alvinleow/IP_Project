@@ -13,7 +13,7 @@ public class UserPageController {
     // Mapping for the user's home page
     @GetMapping("/home")
     public String showUserHomePage() {
-        return "User/homepageuser"; // Path to the JSP for the user home page
+        return "User/HomePageUser"; // Path to the JSP for the user home page
     }
 
     // Mapping for the user's profile page

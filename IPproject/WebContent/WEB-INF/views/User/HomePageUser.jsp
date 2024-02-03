@@ -17,10 +17,10 @@
         <div class="report-container">
             <div class="top">
                 <div class="logo-container">
-                    <img src="<c:url value='/images/MBIP_LOGO.png'/>" alt="MBIP LOGO">
+                    <img src="<c:url value='/Images/MBIP_LOGO.png'/>" alt="MBIP LOGO">
                 </div>
                 <div class="icon-container">
-                    <img src="<c:url value='/images/user_icon.png'/>" alt="user icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
+                    <img src="<c:url value='/Images/user_icon.png'/>" alt="user icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
                     <div class="dropdown-menu" aria-labelledby="userIcon">
                         <a class="dropdown-item" href="<c:url value='/user/profile'/>">
                             <i class="profile-icon"></i> Profile
@@ -34,7 +34,7 @@
             <h2 class="report-title">
                 <span class="title-background">Home Page</span>
             </h2>
-            <img src="<c:url value='/images/home_screenshot.png'/>" alt="HomePage">
+            <img src="<c:url value='/Images/home_screenshot.png'/>" alt="HomePage">
         </div>
     </div>
     <div class="footer-bar"></div>
