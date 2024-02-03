@@ -46,9 +46,9 @@ public class DatabaseInitializer {
         Integer count = jdbcTemplate.queryForObject(checkSql, Integer.class);
         if (count == null || count == 0) {
             // If admin account does not exist, insert the default admin account
-            String insertSql = "INSERT INTO user (email, username, password, userLevel) " +
+            String insertSql = "INSERT INTO user (fullname, email, username, password, userLevel) " +
                     "VALUES (?, ?, ?, ?)";
-            jdbcTemplate.update(insertSql, "admin@gmail.com", "admin", "admin1", 1);
+            jdbcTemplate.update(insertSql, "Admin Account", "admin@gmail.com", "admin", "admin1", 1);
         }
     }
     
