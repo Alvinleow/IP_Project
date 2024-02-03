@@ -1,2 +1,5 @@
+com\controller\AdminController.class
 com\controller\UploadBillController.class
+com\config\DatabaseInitializer.class
 com\controller\UserManageController.class
+com\controller\UserPageController.class

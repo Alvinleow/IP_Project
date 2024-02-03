@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Consumption Category</title>
-    <link rel="stylesheet" href="<c:url value='/CSS/styles.css'/>">
+    <link rel="stylesheet" href="<c:url value='../css/styles.css'/>">
     <!-- Additional scripts or stylesheets can be included here -->
 </head>
 
@@ -16,15 +16,15 @@
 
     <div class="top">
         <div class="logo-container">
-            <img src="<c:url value='/images/MBIP_LOGO.png'/>" alt="MBIP_LOGO">
+            <img src="<c:url value='/Images/MBIP_LOGO.png'/>" alt="MBIP_LOGO">
         </div>
         <div class="icon-container">
-            <img src="<c:url value='/images/user_icon.png'/>" alt="user_icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
+            <img src="<c:url value='/Images/user_icon.png'/>" alt="user_icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
             <div class="dropdown-menu" aria-labelledby="userIcon">
-                <a class="dropdown-item" href="<c:url value='/user_view/user_profile.jsp'/>">
+                <a class="dropdown-item" href="<c:url value='/user/profile'/>">
                     <i class="profile-icon"></i> Profile
                 </a>
-                <a class="dropdown-item" href="<c:url value='/both_view/logout_page.jsp'/>">
+                <a class="dropdown-item" href="<c:url value='/user/logout'/>">
                     <i class="logout-icon"></i> Logout
                 </a>
             </div>
@@ -94,23 +94,26 @@
 
         const categoryButtons = document.querySelectorAll('.category-button');
         
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const category = this.getAttribute('data-category');
-                switch(category) {
-                    case 'water':
-                        window.location.href = '<c:url value="/Upload-Water-Bill.jsp"/>';
-                        break;
-                    case 'electricity':
-                        window.location.href = '<c:url value="/Upload-Electricity-Bill.jsp"/>';
-                        break;
-                    case 'waste':
-                        window.location.href = '<c:url value="/Upload-Waste-Bill.jsp"/>';
-                        break;
-                    case 'oil':
-                        window.location.href = '<c:url value="/Upload-Cooking-Oil-Recycling.jsp"/>';
-                        break;
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryButtons = document.querySelectorAll('.category-button');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    switch(category) {
+                        case 'water':
+                            window.location.href = '<c:url value="/user/water"/>';
+                            break;
+                        case 'electricity':
+                            window.location.href = '<c:url value="/user/electricity"/>';
+                            break;
+                        case 'waste':
+                            window.location.href = '<c:url value="/user/waste"/>';
+                            break;
+                        case 'oil':
+                            window.location.href = '<c:url value="/user/oil"/>';
+                            break;
+                    }
+                });
             });
         });
 

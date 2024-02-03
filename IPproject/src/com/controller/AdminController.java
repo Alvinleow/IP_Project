@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -25,28 +26,37 @@ public class AdminController {
         return mav;
     }
 
-    @GetMapping("/admin/dashboard")
+    @RequestMapping("/admin/dashboard")
     public ModelAndView showAdminDashboard() {
         ModelAndView mav = new ModelAndView("Admin/adminDashboard");
         // Add objects to the model if needed
         return mav;
     }
 
-    @GetMapping("/admin/generate-report")
+    @RequestMapping("/admin/generate-report")
     public ModelAndView showGenerateReportPage() {
         ModelAndView mav = new ModelAndView("Admin/generateReportSidebar");
         // Add objects to the model if needed
         return mav;
     }
 
-    @GetMapping("/admin/participants")
+    @RequestMapping("/admin/participants")
     public ModelAndView showViewParticipantsPage() {
         ModelAndView mav = new ModelAndView("Admin/viewParticipant");
         // Add objects to the model if needed
         return mav;
     }
 
-    @GetMapping("/admin/logout")
+    // If you have a profile page, add this:
+    @RequestMapping("/admin/profile")
+    public ModelAndView showAdminProfile() {
+        ModelAndView mav = new ModelAndView("Admin/adminProfile");
+        // Add objects to the model if needed
+        return mav;
+    }
+
+    // If you have a logout functionality, add this:
+    @RequestMapping("/admin/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "redirect:/login";

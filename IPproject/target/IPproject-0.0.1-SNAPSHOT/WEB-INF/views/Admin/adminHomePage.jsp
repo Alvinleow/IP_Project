@@ -20,10 +20,10 @@
         <div class="icon-container">
             <img src="<c:url value='/Images/user_icon.png'/>" alt="user_icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
             <div class="dropdown-menu" aria-labelledby="userIcon">
-                <a class="dropdown-item" href="../admin_view/admin_profile.html">
+                <a class="dropdown-item" href="<c:url value='/admin/profile'/>">
                     <i class="profile-icon"></i> Profile
                 </a>
-                <a class="dropdown-item" href="../both_view/logout_page.html">
+                <a class="dropdown-item" href="<c:url value='/logout'/>">
                     <i class="logout-icon"></i> Logout
                 </a>
             </div>

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carbon Footprint Calculation Result</title>
-    <link rel="stylesheet" href="<c:url value='/CSS/styles.css'/>">
+    <link rel="stylesheet" href="<c:url value='../css/styles.css'/>">
 </head>
 <body>
     <jsp:include page="../User/SidebarUser.jsp" />
@@ -28,12 +28,11 @@
                 <button id="show-calculation" class="show-calculation">show calculation</button>
             </div>
             <div class="calculation-details">
-                <p>{Electricity Consumption} kWh x 0.584 kgCO2 /kWh = {Carbon Footprint} kgCO2</p>
-                <p>80 kWh x 0.584 kgCO2/m3 = {Carbon Footprint} kgCO2</p>
-                <p>80 kWh x 0.584 kgCO2/m3 = 46.72 kgCO2</p>
+                <p>[Electricity Consumption] kWh x [co2PerKwh] kgCO2 /kWh = [Carbon Footprint] kgCO2</p>
+                <p>${ElectricConsumption}kWh x ${co2PerKwh} kgCO2/kWh = ${carbonFootprint} kgCO2</p>
             </div>
             <div class="button-container">
-                <button type="button" class="finish-button">Finish</button>
+                <button type="button" class="finish-button" onclick="window.location.href='<c:url value="/user/upload"/>';">Finish</button>
             </div>
         </div>
     </div>
@@ -52,15 +51,6 @@
             }
         });
 
-        // Finish button action
-        document.addEventListener('DOMContentLoaded', function() {
-            var finishButton = document.querySelector('.finish-button');
-            
-            finishButton.addEventListener('click', function() {
-                window.location.href = '<c:url value="/ChooseCategory.jsp"/>';
-            });
-        });
-
         // Dropdown menu for user icon
         document.addEventListener('DOMContentLoaded', function() {
             var userIcon = document.getElementById("userIcon");
@@ -68,7 +58,7 @@
             
             userIcon.addEventListener("click", function(event) {
                 dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
-                event.stopPropagation(); // Prevent the click from being detected by the window event
+                event.stopPropagation();
             });
             
             window.addEventListener("click", function() {
