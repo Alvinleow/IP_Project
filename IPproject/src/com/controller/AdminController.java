@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class AdminController {
@@ -51,13 +53,40 @@ public class AdminController {
     
     @GetMapping("/admin/verify-upload")
     public ModelAndView verifyUpload(@RequestParam("month") String month, @RequestParam("category") String category, HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("Admin/verificationPage"); // Change to your actual verification page view name
+        ModelAndView mav = new ModelAndView("Admin/verificationPage");
         mav.addObject("selectedMonth", month);
         mav.addObject("selectedCategory", category);
-        // Perform the verification process or add necessary data to the model
+        
+        String sql = "";
+        switch (category.toLowerCase()) {
+            case "water":
+            case "electricity":
+                sql = "SELECT id, user_id, consumption, file_content FROM " + category + "_bills WHERE verify_status = 'No' AND bill_month = ?";
+                break;
+            case "waste":
+                sql = "SELECT id, user_id, days_produced, weight FROM waste_bills WHERE verify_status = 'No' AND bill_month = ?";
+                break;
+            case "cooking_oil":
+                sql = "SELECT id, user_id, recycling_days, volume, file_content FROM cooking_oil_bills WHERE verify_status = 'No' AND bill_month = ?";
+                break;
+        }
+
+        List<Map<String, Object>> unverifiedData = jdbcTemplate.queryForList(sql, month);
+        mav.addObject("unverifiedData", unverifiedData);
         return mav;
     }
 
+    @GetMapping("/admin/verify")
+    public String verifyData(@RequestParam("id") int id, @RequestParam("category") String category, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        String sql = "UPDATE " + category + "_bills SET verify_status = 'Yes' WHERE id = ?";
+        try {
+            jdbcTemplate.update(sql, id);
+            redirectAttributes.addFlashAttribute("successMessage", "Data verified successfully.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error verifying data: " + e.getMessage());
+        }
+        return "redirect:/admin/verify-upload?month=" + request.getParameter("month") + "&category=" + category;
+    }
 
 
     @GetMapping("/admin/generate-report")
