@@ -25,7 +25,7 @@
         <div class="icon-container">
             <img src="../Images/user_icon.png" alt="user_icon" width="70" height="70" id="userIcon" class="dropdown-toggle">
             <div class="dropdown-menu" aria-labelledby="userIcon">
-                <a class="dropdown-item" href="<c:url value='/admin/profile'/>">
+                <a class="dropdown-item" href="<c:url value='/user/profile'/>">
                     <i class="profile-icon"></i> Profile
                 </a>
                 <a class="dropdown-item" href="<c:url value='/logout'/>">
@@ -100,6 +100,13 @@
             </div>
 
         </div>
+        
+        <div class="edit-profile-button-container">
+		    <form action="<c:url value='/user/editProfile'/>" method="get">
+		        <button type="submit" class="edit-profile-button">Edit Profile</button>
+		    </form>
+		</div>
+		
     </div>
 
   </div>
