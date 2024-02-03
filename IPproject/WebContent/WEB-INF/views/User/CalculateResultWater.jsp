@@ -44,7 +44,7 @@
         <p>${waterConsumption} m³ x ${co2PerCubicMeter} kgCO2 /m³ = ${carbonFootprint} kgCO2</p>
       </div>
       <div class="button-container">
-        <button type="button" class="finish-button" onclick="window.location.href='<c:url value="/user/chooseCategory"/>';">Finish</button>
+        <button type="button" class="finish-button" onclick="window.location.href='<c:url value="/user/upload"/>';">Finish</button>
       </div>
     </div>
   </div>
