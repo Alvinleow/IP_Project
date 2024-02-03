@@ -13,25 +13,25 @@ public class UserPageController {
     // Mapping for the user's home page
     @GetMapping("/home")
     public String showUserHomePage() {
-        return "views/User/homepageuser"; // Path to the JSP for the user home page
+        return "User/HomePageUser"; // Path to the JSP for the user home page
     }
 
     // Mapping for the user's profile page
     @GetMapping("/profile")
     public String showUserProfile() {
-        return "views/User/userProfile"; // Path to the JSP for the user profile page
+        return "User/userProfile"; // Path to the JSP for the user profile page
     }
 
     // Mapping for the user's dashboard
     @GetMapping("/dashboard")
     public String showUserDashboard() {
-        return "views/User/userDashboard"; // Path to the JSP for the user dashboard
+        return "User/userDashboard"; // Path to the JSP for the user dashboard
     }
 
     // Mapping for the user's settings page
     @GetMapping("/settings")
     public String showUserSettings() {
-        return "views/User/userSettings"; // Path to the JSP for the user settings page
+        return "User/userSettings"; // Path to the JSP for the user settings page
     }
 
     // Mapping for the logout process
