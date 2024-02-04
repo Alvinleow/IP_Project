@@ -56,7 +56,7 @@
         <a href="<c:url value='/user/home'/>"><img src="<c:url value='/Images/home-48.png'/>" alt="Home Icon" class="icon">Home</a>
         <a href="<c:url value='//user/dashboard'/>"><img src="<c:url value='/Images/dashboard-64.png'/>" alt="Dashboard Icon" class="icon">Dashboard</a>
         <a href="<c:url value='/user/upload'/>"><img src="<c:url value='/Images/link-24.png'/>" alt="Upload Data Icon" class="icon">Upload Data</a>
-        <a href="#"><img src="<c:url value='/Images/aboutus.png'/>" alt="About us Icon" class="icon">About us</a>
+        <a href="<c:url value='/user/aboutUs'/>"><img src="<c:url value='/Images/aboutus.png'/>" alt="About us Icon" class="icon">About us</a>
     </div>
 
     <!-- 

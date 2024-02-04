@@ -65,7 +65,7 @@ public class UserPageController {
     // Mapping for the user's about us page
     @RequestMapping("/aboutUs")
     public ModelAndView showAboutUs() {
-    	ModelAndView mav = new ModelAndView("User/AboutUs");
+    	ModelAndView mav = new ModelAndView("User/aboutUs");
         return mav; 
     }
 
