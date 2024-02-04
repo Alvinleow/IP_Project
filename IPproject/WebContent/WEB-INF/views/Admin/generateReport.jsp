@@ -44,21 +44,14 @@
             <canvas id="myChart" style="width:100%;max-width:800px"></canvas>
         </div>
         <div class="buttons-container">
-            <button class="generate-btn" onclick="msg()">Generate Report</button>
-      		<br><br>
-      		<a href="../Admin/viewReport.jsp" target="_self">
+            
+      		<a href="<c:url value='/admin/downloadReport'/>">
       		<button class="download-btn" >Download Report</button>
       		</a>
         </div>
     </div>
 </div>
 <div class="footer-bar"></div>
-
-<script>
-    function msg() {
-      alert("Generation Success");
-    }
-</script>
 
 <script>
     var xValues = ["Recycle Cooking Oil", "Waste", "Electricity", "Water"];

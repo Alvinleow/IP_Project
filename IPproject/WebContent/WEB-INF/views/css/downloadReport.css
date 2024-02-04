@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
 
-body {
+  body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -12,78 +12,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 2em 0;
-	}
-	
-.month-container, .category-container {
-    background: white;
-    padding: 2em;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    max-width: 500px;
-    width: 90%;
-    margin: auto;
-    text-align: center;
-}
-
-.month-title, .category-title {
-    color: #333;
-    margin-bottom: 1em;
-    font-size: 2rem;
-}
-
-.title-background {
-    background-color: #FFCC16;
-    display: inline-block;
-    padding: 0.5em 1em;
-    border-radius: 5px;
-}
-
-.month-selection, .category-selection {
-    margin-bottom: 1em;
-}
-
-select {
-    width: 100%;
-    padding: 0.5em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 1em;
-}
-
-button {
-    padding: 0.5em 1em;
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.footer-bar {
-    background-color: rgb(38,123,251);
-    width: 100%;
-    height: 50px;
-    color: white;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-}
-
-  .report-container {
-    /* background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
-    margin-left: 300px;  */
+  }
+  .download-container {
     background: white;
     padding: 2em;
     border-radius: 10px;
@@ -97,13 +27,6 @@ button:hover {
   .title-background {
     background-color: #FFCC16;
     padding: 0.5em 1em; /* Add some padding around the text */
-  }
-  .formula {
-    background-color: #FFFAC9;
-    border-radius: 15px;
-    padding: 10px;
-    margin-bottom: 1em;
-    font-weight: bold;
   }
   .buttons-container {
     text-align: center;
@@ -144,9 +67,7 @@ button:hover {
     justify-content: space-between; /* This will place the logo and icon on opposite ends */
     align-items: center; /* This will vertically align them in the center */
     padding: 10px;
-    /* padding-bottom: 20px; */
   }
-  
   .logo-container {
     flex-grow: 1;
     display: flex;
@@ -192,13 +113,52 @@ button:hover {
   }
 
   .profile-icon:before {
-    background-image: url('../Images/profile_icon.png'); /* Replace with your profile icon path */
+    background-image: url('../images/profile_icon.png'); /* Replace with your profile icon path */
   }
 
   .logout-icon:before {
-    background-image: url('../Images/logout_icon.png'); /* Replace with your logout icon path */
+    background-image: url('../images/logout_icon.png'); /* Replace with your logout icon path */
   }
 
   .dropdown-item:hover {
     background-color: #f1f1f1;
+  }
+  .download-file {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .download-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .download-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 80px;
+  }
+  .download-item {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .download-item img {
+    width: 80px; /* Adjust as needed */
+    height: auto;
+  }
+  .download-item .new-indicator {
+    color: #ff0000; /* Red color for the 'NEW' indicator */
+    font-weight: bold;
+  }
+  .download-item button {
+    background-color: #6a5acd; /* SlateBlue color */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .download-item button:hover {
+    background-color: #483d8b; /* Darker SlateBlue color */
   }
