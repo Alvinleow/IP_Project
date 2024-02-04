@@ -243,7 +243,10 @@ public class AdminController {
         } catch (EmptyResultDataAccessException e) {
             countWaste = 0;
         }
-
+        
+        int total = countWater + countElectricity + countCookingOil + countWaste;
+        mav.addObject("total", total);
+        
         mav.addObject("countWater", countWater);
         mav.addObject("countElectricity", countElectricity);
         mav.addObject("countCookingOil", countCookingOil);

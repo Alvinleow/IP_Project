@@ -52,6 +52,9 @@
         <div class="PieChart">
             <canvas id="myChart" style="width:100%;max-width:800px"></canvas>
         </div>
+        <div class="total-count">
+            <h3>Total Uploads for ${selectedMonth}: ${total}</h3>
+        </div>
     </div>
 </div>
 <div class="footer-bar"></div>
