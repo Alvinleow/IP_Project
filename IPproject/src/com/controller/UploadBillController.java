@@ -2,11 +2,16 @@ package com.controller;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,14 +47,18 @@ public class UploadBillController {
         }
         
         try {
-            byte[] fileContent = file.getBytes();
-            String sql = "INSERT INTO water_bills (user_id, consumption, bill_month, file_content) VALUES (?, ?, ?, ?)";
+        	byte[] fileContent = file.getBytes();
+            String originalFilename = file.getOriginalFilename();
+            String fileType = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+            String sql = "INSERT INTO water_bills (user_id, consumption, bill_month, file_content, file_type) VALUES (?, ?, ?, ?, ?)";
+
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setInt(1, userId);
                 ps.setDouble(2, consumption);
                 ps.setString(3, billMonth);
                 ps.setBytes(4, fileContent);
+                ps.setString(5, fileType);
                 return ps;
             });
 
@@ -110,13 +119,17 @@ public class UploadBillController {
         
         try {
         	byte[] fileContent = file.getBytes();
-        	String sql = "INSERT INTO electricity_bills (user_id, consumption, bill_month, file_content) VALUES (?, ?, ?, ?)";
-        	jdbcTemplate.update(connection -> {
+            String originalFilename = file.getOriginalFilename();
+            String fileType = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+            String sql = "INSERT INTO electricity_bills (user_id, consumption, bill_month, file_content, file_type) VALUES (?, ?, ?, ?, ?)";
+
+            jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setInt(1, userId);
                 ps.setDouble(2, consumption);
                 ps.setString(3, billMonth);
                 ps.setBytes(4, fileContent);
+                ps.setString(5, fileType);
                 return ps;
             });
         	
@@ -176,8 +189,11 @@ public class UploadBillController {
         }
 
         try {
-            byte[] fileContent = file.getBytes();
-            String sql = "INSERT INTO cooking_oil_bills (user_id, recycling_days, volume, bill_month, file_content) VALUES (?, ?, ?, ?, ?)";
+        	byte[] fileContent = file.getBytes();
+            String originalFilename = file.getOriginalFilename();
+            String fileType = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+            String sql = "INSERT INTO cooking_oil_bills (user_id, recycling_days, volume, bill_month, file_content, file_type) VALUES (?, ?, ?, ?, ?, ?)";
+
             jdbcTemplate.update(connection -> {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setInt(1, userId);
@@ -185,6 +201,7 @@ public class UploadBillController {
                 ps.setDouble(3, volume);
                 ps.setString(4, billMonth);
                 ps.setBytes(5, fileContent);
+                ps.setString(6, fileType);
                 return ps;
             });
 
@@ -293,5 +310,64 @@ public class UploadBillController {
         session.removeAttribute("billMonth");
         
         return "User/CalculateResultWasteConsumption";
+    }
+    
+    @GetMapping("/previewWaterBill")
+    public ResponseEntity<byte[]> previewWaterBill(@RequestParam("fileId") Integer fileId) {
+        return previewFile(fileId, "water_bills");
+    }
+
+    @GetMapping("/previewElectricityBill")
+    public ResponseEntity<byte[]> previewElectricityBill(@RequestParam("fileId") Integer fileId) {
+        return previewFile(fileId, "electricity_bills");
+    }
+
+    @GetMapping("/previewCookingOilBill")
+    public ResponseEntity<byte[]> previewCookingOilBill(@RequestParam("fileId") Integer fileId) {
+        return previewFile(fileId, "cooking_oil_bills");
+    }
+
+    @GetMapping("/previewWasteBill")
+    public ResponseEntity<byte[]> previewWasteBill(@RequestParam("fileId") Integer fileId) {
+        return previewFile(fileId, "waste_bills");
+    }
+
+    private ResponseEntity<byte[]> previewFile(Integer fileId, String tableName) {
+        try {
+            String sql = "SELECT file_content, file_type FROM " + tableName + " WHERE id = ?";
+            
+            Map<String, Object> result = jdbcTemplate.queryForMap(sql, fileId);
+            
+            if (result != null) {
+                byte[] fileContent = (byte[]) result.get("file_content");
+                String fileType = (String) result.get("file_type");
+                MediaType mediaType = MediaType.parseMediaType(getContentTypeByFileType(fileType));
+
+                return ResponseEntity.ok()
+                        .contentType(mediaType)
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"preview." + fileType + "\"")
+                        .body(fileContent);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    private String getContentTypeByFileType(String fileType) {
+        switch (fileType.toLowerCase()) {
+            case "pdf":
+                return "application/pdf";
+            case "jpg":
+            case "jpeg":
+                return "image/jpeg";
+            case "png":
+                return "image/png";
+            default:
+                return "application/octet-stream";
+        }
     }
 }

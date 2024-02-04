@@ -77,8 +77,17 @@
 	                </c:if>
 	                <td>
 	                    <c:choose>
-	                        <c:when test="${selectedCategory == 'water' || selectedCategory == 'electricity' || selectedCategory == 'cooking_oil'}">
-	                            <a href="<c:url value='/downloadFile?fileId=${data.id}'/>">Download File</a>
+	                        <c:when test="${selectedCategory == 'water'}">
+	                            <a href="<c:url value='/user/previewWaterBill?fileId=${data.id}'/>" target="_blank">Preview File</a>
+	                        </c:when>
+	                        <c:when test="${selectedCategory == 'electricity'}">
+	                            <a href="<c:url value='/user/previewElectricityBill?fileId=${data.id}'/>" target="_blank">Preview File</a>
+	                        </c:when>
+	                        <c:when test="${selectedCategory == 'cooking_oil'}">
+	                            <a href="<c:url value='/user/previewCookingOilBill?fileId=${data.id}'/>" target="_blank">Preview File</a>
+	                        </c:when>
+	                        <c:when test="${selectedCategory == 'waste'}">
+	                            <a href="<c:url value='/user/previewWasteBill?fileId=${data.id}'/>" target="_blank">Preview File</a>
 	                        </c:when>
 	                        <c:otherwise>
 	                            N/A
