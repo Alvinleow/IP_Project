@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -120,7 +122,10 @@ public class AdminController {
     @GetMapping("/admin/generateReport")
     public ModelAndView showGenerateReportPage() {
         ModelAndView mav = new ModelAndView("Admin/generateReport");
-        // Add objects to the model if needed
+        List<String> months = Arrays.asList("January", "February", "March", "April", "May", 
+        		"June", "July", "August", "September", "October", "November", "December");
+        mav.addObject("months", months);
+        
         return mav;
     }
     
@@ -197,5 +202,54 @@ public class AdminController {
             redirectAttributes.addFlashAttribute("errorMessage", "Error updating profile: " + e.getMessage());
             return "redirect:/admin/editProfile";
         }
+    }
+    
+    @GetMapping("/admin/generateMonthlyReport")
+    public ModelAndView generateMonthlyReport(@RequestParam("selectedMonth") String selectedMonth) {
+        ModelAndView mav = new ModelAndView("Admin/generateReport");
+        mav.addObject("selectedMonth", selectedMonth);
+        
+        int countWater = 0;
+        int countElectricity = 0;
+        int countCookingOil = 0;
+        int countWaste = 0;
+        List<String> months = Arrays.asList("January", "February", "March", "April", "May",
+        		"June", "July", "August", "September", "October", "November", "December");
+
+        try {
+            String sqlWater = "SELECT COUNT(*) FROM water_bills WHERE bill_month = ?";
+            countWater = jdbcTemplate.queryForObject(sqlWater, Integer.class, selectedMonth);
+        } catch (EmptyResultDataAccessException e) {
+            countWater = 0;
+        }
+
+        try {
+            String sqlElectricity = "SELECT COUNT(*) FROM electricity_bills WHERE bill_month = ?";
+            countElectricity = jdbcTemplate.queryForObject(sqlElectricity, Integer.class, selectedMonth);
+        } catch (EmptyResultDataAccessException e) {
+            countElectricity = 0;
+        }
+
+        try {
+            String sqlCookingOil = "SELECT COUNT(*) FROM cooking_oil_bills WHERE bill_month = ?";
+            countCookingOil = jdbcTemplate.queryForObject(sqlCookingOil, Integer.class, selectedMonth);
+        } catch (EmptyResultDataAccessException e) {
+            countCookingOil = 0;
+        }
+
+        try {
+            String sqlWaste = "SELECT COUNT(*) FROM waste_bills WHERE bill_month = ?";
+            countWaste = jdbcTemplate.queryForObject(sqlWaste, Integer.class, selectedMonth);
+        } catch (EmptyResultDataAccessException e) {
+            countWaste = 0;
+        }
+
+        mav.addObject("countWater", countWater);
+        mav.addObject("countElectricity", countElectricity);
+        mav.addObject("countCookingOil", countCookingOil);
+        mav.addObject("countWaste", countWaste);
+        mav.addObject("months", months);
+
+        return mav;
     }
 }

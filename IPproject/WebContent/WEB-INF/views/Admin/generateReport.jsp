@@ -40,50 +40,61 @@
         <h2 class="report-title">
             <span class="title-background">Calculation/Generate Report</span>
         </h2>
+        <!-- Add this form inside your main-content div in generateReport.jsp -->
+		<form action="<c:url value='/admin/generateMonthlyReport'/>" method="GET">
+		    <select name="selectedMonth" onchange="this.form.submit()">
+		        <option value="" disabled selected>Choose Month</option>
+		        <c:forEach items="${months}" var="month">
+				    <option value="${month}">${month}</option>
+				</c:forEach>
+		    </select>
+		</form>
         <div class="PieChart">
             <canvas id="myChart" style="width:100%;max-width:800px"></canvas>
-        </div>
-        <div class="buttons-container">
-            
-      		<a href="<c:url value='/admin/downloadReport'/>">
-      		<button class="download-btn" >Download Report</button>
-      		</a>
         </div>
     </div>
 </div>
 <div class="footer-bar"></div>
 
 <script>
-    var xValues = ["Recycle Cooking Oil", "Waste", "Electricity", "Water"];
-    var yValues = [7, 9, 46, 37];
-    var barColors = [
-      "#85b6ff",
-      "#4ecb71",
-      "#ffd233",
-      "#ff9a62",
-    ];
-    
-    new Chart("myChart", {
-      type: "pie",
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        title: {
-          display: true,
-          text: "Carbon Emission of June 2023"
-        },
-        // legend: {
-        //     display: true,
-        //     position: 'right'
-        // },
-      }
+    document.addEventListener('DOMContentLoaded', function() {
+        var selectedMonth = "${selectedMonth}";
+        var countWater = ${countWater};
+        var countElectricity = ${countElectricity};
+        var countCookingOil = ${countCookingOil};
+        var countWaste = ${countWaste};
+        
+        var xValues = ["Recycle Cooking Oil", "Waste", "Electricity", "Water"];
+        var yValues = [countCookingOil, countWaste, countElectricity, countWater];
+        var barColors = [
+          "#85b6ff",
+          "#4ecb71",
+          "#ffd233",
+          "#ff9a62",
+        ];
+        
+        new Chart("myChart", {
+          type: "pie",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: "Carbon Emission for " + selectedMonth
+            },
+            // legend: {
+            //     display: true,
+            //     position: 'right'
+            // },
+          }
+        });
     });
-    </script>
+</script>
 
 <script>
     // Pure JavaScript
