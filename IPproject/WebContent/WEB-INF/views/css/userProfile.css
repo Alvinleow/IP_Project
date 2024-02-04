@@ -124,11 +124,11 @@ body {
   }
 
   .profile-icon:before {
-    background-image: url('../images/profile_icon.png'); /* Replace with your profile icon path */
+    background-image: url('../Images/profile_icon.png'); /* Replace with your profile icon path */
   }
 
   .logout-icon:before {
-    background-image: url('../images/logout_icon.png'); /* Replace with your logout icon path */
+    background-image: url('../Images/logout_icon.png'); /* Replace with your logout icon path */
   }
 
   .dropdown-item:hover {

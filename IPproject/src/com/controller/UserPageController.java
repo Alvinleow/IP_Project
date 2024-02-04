@@ -69,15 +69,14 @@ public class UserPageController {
         return mav; 
     }
 
-    // Mapping for the logout process
-//    @RequestMapping("/logout")
-//    public String logoutUser(HttpServletRequest request) {
-//        HttpSession session = request.getSession(false);
-//        if (session != null) {
-//            session.invalidate(); // Invalidate the session to logout the user
-//        }
-//        return "General/LogoutPage"; // Path to the JSP for the logout confirmation page
-//    }
+    @RequestMapping("/logout")
+    public String logoutUser(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // Invalidate the session to logout the user
+        }
+        return "General/LogoutPage"; // Path to the JSP for the logout confirmation page
+    }
     
     // Mapping for choosing the category of bill to upload
     @RequestMapping("/chooseCategory")
