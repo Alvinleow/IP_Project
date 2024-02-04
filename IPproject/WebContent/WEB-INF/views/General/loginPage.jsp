@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/loginPage.css'/>">
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/background.css'/>">
 </head>
 <body>

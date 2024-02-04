@@ -26,6 +26,11 @@ body {
     color: #333;
     margin-bottom: 2em;
   }
+
+  .report-container img{
+    margin-top: 40px;
+  }
+
   .title-background {
     background-color: #FFCC16;
     padding: 0.5em 1em; /* Add some padding around the text */
@@ -134,98 +139,13 @@ body {
   .dropdown-item:hover {
     background-color: #f1f1f1;
   }
-
-  .profile-container {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-
-  .profile-title {
-    display: flex;
-    flex-direction: row ;
-    background-color: transparent;
-    position: absolute;
-    height: 100px;
-    font-size:xx-large;
-  }
-
-  .user-title {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .user-icon {
-    width: fit-content;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 10px;
-  }
-
-  .user-name,
-  .user-text {
-    margin-top: 20px;
-    margin-bottom: 0px;
-    font-weight: bold;
-  }
-
-  .user-text {
-    font-size: large;
-    margin-top: 25px;
-  }
-
-  .profile-background {
-    background-color: #C2DBFF;
-    height: 70px;
-    margin-bottom: 50px;
-  }
-
-  .profile-info {
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .information {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 135px;
-    margin-bottom: 10px;
-  }
-
-  .icons {
-    width: fit-content;
-  }
-
-  .icons img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .text {
-    margin-left: 10px;
-    font-size: large;
-    height: fit-content;
-  }
   
-  .edit-profile-button-container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.edit-profile-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 16px; 
-}
-
-.edit-profile-button:hover {
-    background-color: #45a049;
-}
+  .welcome-text {
+    width: 700px ; /* Adjusts the width of the welcome text */
+    padding-right: 20px; /* Adds some space between the text and the form */
+    color: #fff; /* Adjust the color as needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Adds some background color with opacity */
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+  }

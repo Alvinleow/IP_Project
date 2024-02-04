@@ -124,3 +124,8 @@ body {
   .dropdown-item:hover {
     background-color: #f1f1f1;
   }
+  
+  .total-count {
+    text-align: center;
+    margin: 20px 0;
+  }
