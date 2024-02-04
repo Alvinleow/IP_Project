@@ -124,6 +124,13 @@ public class AdminController {
         return mav;
     }
     
+    @GetMapping("/admin/downloadReport")
+    public ModelAndView showDownloadReportPage() {
+        ModelAndView mav = new ModelAndView("Admin/downloadReport");
+        // Add objects to the model if needed
+        return mav;
+    }
+    
     // If you have a logout functionality, add this:
 //    @RequestMapping("/admin/logout")
 //    public String logout(HttpServletRequest request) {
