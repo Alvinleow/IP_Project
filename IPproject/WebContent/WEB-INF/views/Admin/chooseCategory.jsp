@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choose Category</title>
-    <link rel="stylesheet" href="<c:url value='/css/styles.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/chooseMonth.css'/>">
 </head>
 <body>
 <jsp:include page="../Admin/adminSidebar.jsp" />
@@ -34,11 +34,13 @@
     </h2>
     <div class="category-selection">
         <form action="<c:url value='/admin/verify-upload'/>" method="GET">
+            <!-- Include the selected month as a hidden input -->
+            <input type="hidden" name="month" value="${selectedMonth}" />
             <select name="category" required>
                 <option value="" disabled selected>Select Category</option>
                 <option value="water">Water Bills</option>
                 <option value="electricity">Electricity Bills</option>
-                <option value="cookingOil">Cooking Oil Bills</option>
+                <option value="cooking_oil">Cooking Oil Bills</option>
                 <option value="waste">Waste Bills</option>
                 <!-- Add other categories if any -->
             </select>
@@ -48,5 +50,24 @@
   </div>
 </div>
 <div class="footer-bar"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var userIcon = document.getElementById("userIcon");
+      var dropdownMenu = document.querySelector(".dropdown-menu");
+    
+      userIcon.addEventListener("click", function(event) {
+        dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        event.stopPropagation();
+      });
+    
+      window.addEventListener("click", function() {
+        if (dropdownMenu.style.display === "block") {
+          dropdownMenu.style.display = "none";
+        }
+      });
+    });
+</script>
+
 </body>
 </html>

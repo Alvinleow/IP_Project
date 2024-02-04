@@ -8,15 +8,10 @@
     <title>Upload Cooking Oil Recycling Proof</title>
     <link rel="stylesheet" href="<c:url value='../css/styles.css'/>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(function(){
-            $("#sidebarUser").load("sidebarUser.html"); 
-        });
-    </script>
+
 </head>
 <body>
     <jsp:include page="../User/SidebarUser.jsp" />
-
     <div class="top">
         <div class="logo-container">
             <img src="<c:url value='/Images/MBIP_LOGO.png'/>" alt="MBIP_LOGO" >
@@ -27,7 +22,7 @@
                 <a class="dropdown-item" href="<c:url value='/user/profile'/>">
                     <i class="profile-icon"></i> Profile
                 </a>
-                <a class="dropdown-item" href="<c:url value='/user/logout'/>">
+                <a class="dropdown-item" href="<c:url value='/logout'/>">
                     <i class="logout-icon"></i> Logout
                 </a>
             </div>
