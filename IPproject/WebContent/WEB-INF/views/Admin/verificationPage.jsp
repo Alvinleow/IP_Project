@@ -96,6 +96,8 @@
 	                </td>
 	                <td>
 	                    <a href="<c:url value='/admin/verify?id=${data.id}&category=${selectedCategory}&month=${selectedMonth}'/>">Verify</a>
+						|
+						<a href="<c:url value='/admin/reject?id=${data.id}&category=${selectedCategory}&month=${selectedMonth}'/>" style="color:red;">Reject</a>
 	                </td>
 	            </tr>
 	        </c:forEach>
