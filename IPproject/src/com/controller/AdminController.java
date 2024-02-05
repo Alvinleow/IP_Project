@@ -90,6 +90,19 @@ public class AdminController {
         }
         return "redirect:/admin/verify-upload?month=" + request.getParameter("month") + "&category=" + category;
     }
+    
+    @GetMapping("/admin/reject")
+    public String rejectData(@RequestParam("id") int id, @RequestParam("category") String category, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        String sql = "UPDATE " + category + "_bills SET verify_status = 'Rejected' WHERE id = ?";
+        try {
+            jdbcTemplate.update(sql, id);
+            redirectAttributes.addFlashAttribute("successMessage", "Data rejected successfully.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error rejecting data: " + e.getMessage());
+        }
+        return "redirect:/admin/verify-upload?month=" + request.getParameter("month") + "&category=" + category;
+    }
+
 
 
     @GetMapping("/admin/generate-report")
