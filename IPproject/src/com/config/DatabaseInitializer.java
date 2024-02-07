@@ -2,6 +2,7 @@ package com.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,9 @@ public class DatabaseInitializer {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostConstruct
     public void initialize() {
@@ -32,7 +36,7 @@ public class DatabaseInitializer {
                 "`email` varchar(30) DEFAULT NULL," +
                 "`phoneNumber` varchar(11) DEFAULT NULL," +
                 "`username` varchar(30) DEFAULT NULL," +
-                "`password` varchar(30) DEFAULT NULL," +
+                "`password` varchar(255) DEFAULT NULL," +
                 "`userLevel` int(1) NOT NULL DEFAULT '0'," +
                 "PRIMARY KEY (`id`)" +
                 ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
@@ -45,10 +49,10 @@ public class DatabaseInitializer {
         String checkSql = "SELECT COUNT(*) FROM user WHERE username = 'admin'";
         Integer count = jdbcTemplate.queryForObject(checkSql, Integer.class);
         if (count == null || count == 0) {
-            // If admin account does not exist, insert the default admin account
+            String hashedPassword = passwordEncoder.encode("admin1");
             String insertSql = "INSERT INTO user (fullname, email, username, password, userLevel) " +
-                    "VALUES (?, ?, ?, ?)";
-            jdbcTemplate.update(insertSql, "Admin Account", "admin@gmail.com", "admin", "admin1", 1);
+                    "VALUES (?, ?, ?, ?, ?)";
+            jdbcTemplate.update(insertSql, "Admin Account", "admin@gmail.com", "admin", hashedPassword, 1);
         }
     }
     

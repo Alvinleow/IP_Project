@@ -11,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,9 @@ public class UserManageController {
 	
 	@Autowired
     private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/")
     public String defaultPageRedirect() {
@@ -47,7 +51,7 @@ public class UserManageController {
 	    try {
 	        Map<String, Object> user = jdbcTemplate.queryForMap(sql, username);
 	        
-	        if (password.equals(user.get("password"))) {
+	        if (passwordEncoder.matches(password, (String) user.get("password"))) {
 	            
 	            HttpSession session = request.getSession();
 	            session.setAttribute("userId", user.get("id"));
@@ -166,9 +170,10 @@ public class UserManageController {
             return "redirect:/register";
         }
     	
+        String hashedPassword = passwordEncoder.encode(password);
         String sql = "UPDATE user SET username=?, password=? WHERE id=?";
 
-        jdbcTemplate.update(sql, username, password, userId);
+        jdbcTemplate.update(sql, username, hashedPassword, userId);
 
         return "redirect:/registerSuccess";
     }
@@ -242,8 +247,10 @@ public class UserManageController {
         }
 
         try {
+        	String hashedPassword = passwordEncoder.encode(newPassword);
             String sql = "UPDATE user SET password = ? WHERE id = ?";
-            jdbcTemplate.update(sql, newPassword, userId);
+            jdbcTemplate.update(sql, hashedPassword, userId);
+            redirectAttributes.addFlashAttribute("success", "Password updated successfully.");
             return "redirect:/resetSuccessful";
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "An error occurred while updating the password. Please try again.");
